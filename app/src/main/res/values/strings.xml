@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Sms</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+	<string name="inbox">Inbox</string>
+	<string name="sent">Sent</string>
+	<string name="draft">Draft</string>
+	<string name="outbox">Outbox</string>
+</resources>
