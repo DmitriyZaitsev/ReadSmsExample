@@ -10,13 +10,12 @@ import android.widget.ListView;
 /**
  * A placeholder fragment containing a simple view.
  */
+@SuppressWarnings("WeakerAccess")
 public class MainFragment extends Fragment implements View.OnClickListener {
-
 	private MyAdapter mAdapter;
-	private SmsManager mSmsManager;
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, final Bundle savedInstanceState) {
+	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
 		return inflater.inflate(R.layout.f_main, container, false);
 	}
 
@@ -25,8 +24,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
 		super.onViewCreated(view, savedInstanceState);
 
 		final ListView listView = (ListView) view.findViewById(R.id.listView);
-		mSmsManager = new SmsManager(getActivity());
-		mAdapter = new MyAdapter(getActivity(), null);
+		mAdapter = MyAdapter.newInstance(getActivity());
 		listView.setAdapter(mAdapter);
 
 		view.findViewById(R.id.btnInbox).setOnClickListener(this);
@@ -37,20 +35,18 @@ public class MainFragment extends Fragment implements View.OnClickListener {
 
 	@Override
 	public void onClick(final View v) {
-		mAdapter.clear();
-
 		switch (v.getId()) {
 			case R.id.btnInbox:
-				mAdapter.add(mSmsManager.getSmsFromFolder(Sms.Folder.INBOX));
+				mAdapter.setFolder(Sms.Folder.INBOX);
 				break;
 			case R.id.btnOutbox:
-				mAdapter.add(mSmsManager.getSmsFromFolder(Sms.Folder.OUTBOX));
+				mAdapter.setFolder(Sms.Folder.OUTBOX);
 				break;
 			case R.id.btnDraft:
-				mAdapter.add(mSmsManager.getSmsFromFolder(Sms.Folder.DRAFT));
+				mAdapter.setFolder(Sms.Folder.DRAFT);
 				break;
 			case R.id.btnSent:
-				mAdapter.add(mSmsManager.getSmsFromFolder(Sms.Folder.SENT));
+				mAdapter.setFolder(Sms.Folder.SENT);
 				break;
 			default:
 				break;

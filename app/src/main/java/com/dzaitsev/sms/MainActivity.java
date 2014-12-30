@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentActivity;
 public class MainActivity extends FragmentActivity {
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.a_main);
 		if (savedInstanceState == null) {
